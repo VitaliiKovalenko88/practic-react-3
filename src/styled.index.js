@@ -1,4 +1,11 @@
-body {
+import { createGlobalStyle } from "styled-components";
+import { normalize } from "styled-normalize";
+
+export const GlobalStyle = createGlobalStyle`
+  ${normalize}
+ 
+  
+ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,3 +18,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+`;

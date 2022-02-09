@@ -1,20 +1,32 @@
 // import { useRef } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { FilmsView } from "./components/MoviesPage/MoviePage";
-import { FilmsDetaile } from "./components/MoviesDetailesPage/MoviesDetailesPage";
+import { Navigation } from "../Navigation/Navigation";
+import { HomePage } from "../HomePage/HomePage";
+import { MoviesPage } from "../MoviesPage/MoviesPage";
+import { MoviesDetaile } from "../MoviesDetailesPage/MoviesDetailesPage";
 
 export const App = () => {
   return (
     <>
-      <Switch>
-        <Route path="/films" exact>
-          <FilmsView />
-        </Route>
-        <Route path="/films/:filmId">
-          <FilmsDetaile />
-        </Route>
-        <Redirect from="/" to="/films" />
-      </Switch>
+      <Navigation />
+      <div>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+
+          <Route path="/movies" exact>
+            <MoviesPage />
+          </Route>
+
+          <Route path="/movies/:movieId">
+            <MoviesDetaile />
+          </Route>
+          <Route>
+            <Redirect from="/" to="/movies" />
+          </Route>
+        </Switch>
+      </div>
     </>
   );
 };

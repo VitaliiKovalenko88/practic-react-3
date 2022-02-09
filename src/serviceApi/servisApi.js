@@ -16,11 +16,11 @@ export const fetchDetaileMovie = async (id) => {
   return film;
 };
 
-export const fetchMovieByQuery = async (query, page) => {
-  const url = `/3/movie/?api_key=${API_KEY}&query=${query}$page=${page}`;
-  const films = await axios.get(url);
-
-  return films;
+export const fetchMovieByQuery = async (query) => {
+  const url = `/3/search/movie?api_key=${API_KEY}&query=${query}`;
+  const response = await axios.get(url);
+  const { data } = await response;
+  return data;
 };
 
 export const fetchMovieCast = async (id) => {
@@ -31,6 +31,8 @@ export const fetchMovieCast = async (id) => {
 };
 
 export const fetchReviews = async (id, page) => {
-  const url = `/3/movie/${id}/reviews?api_key=${API_KEY}`;
+  const url = `/3/movie/${id}/reviews?api_key=${API_KEY}&page=${page}`;
   const rewiews = await axios.get(url);
+
+  return rewiews;
 };

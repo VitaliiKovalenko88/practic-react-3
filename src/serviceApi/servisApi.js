@@ -19,7 +19,7 @@ export const fetchDetaileMovie = async (id) => {
 export const fetchMovieByQuery = async (query) => {
   const url = `/3/search/movie?api_key=${API_KEY}&query=${query}`;
   const response = await axios.get(url);
-  const { data } = await response;
+  const { data } = response;
   return data;
 };
 
@@ -30,9 +30,9 @@ export const fetchMovieCast = async (id) => {
   return theCast;
 };
 
-export const fetchReviews = async (id, page) => {
-  const url = `/3/movie/${id}/reviews?api_key=${API_KEY}&page=${page}`;
-  const rewiews = await axios.get(url);
-
-  return rewiews;
+export const fetchReviews = async (id) => {
+  const url = `/3/movie/${id}/reviews?api_key=${API_KEY}`;
+  const reviews = await axios.get(url);
+  const { data } = reviews;
+  return data;
 };

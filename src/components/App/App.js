@@ -22,6 +22,7 @@ export const App = () => {
           <Route path="/movies/:movieId">
             <MoviesDetaile />
           </Route>
+
           <Route>
             <Redirect from="/" to="/movies" />
           </Route>

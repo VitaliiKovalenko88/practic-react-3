@@ -13,21 +13,21 @@ export const MoviesPage = () => {
   const history = useHistory();
   // console.log(new URLSearchParams(location.search));
   useEffect(() => {
-    setRequest(new URLSearchParams(location.search).get("query"));
+    // setRequest(new URLSearchParams(location.search).get("query"));
+    // console.log(request);
   }, [location.search]);
-
+  console.log(useRouteMatch());
   useEffect(() => {
-    if (query === "") {
-      return;
+    if (query) {
+      fetchMovieByQuery(query).then(({ results }) => {
+        setMovies(results);
+      });
     }
-
-    fetchMovieByQuery(query).then(({ results }) => {
-      setMovies((prevMovies) => [...prevMovies, ...results]);
-    });
   }, [query]);
 
   const handleFormSubmite = (query) => {
     setQuery(query);
+
     history.push({ ...location, search: `query=${query}` });
   };
   return (
@@ -39,7 +39,7 @@ export const MoviesPage = () => {
             <li key={id}>
               <Link
                 to={{
-                  pathname: `${url}${id}`,
+                  pathname: `${url}/${id}`,
                   state: { from: location },
                 }}
               >

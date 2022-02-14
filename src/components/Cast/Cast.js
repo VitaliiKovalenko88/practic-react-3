@@ -4,32 +4,34 @@ import { fetchMovieCast } from "../../serviceApi/servisApi";
 import movie from "../../image/movie.jpg";
 
 export const Cast = () => {
-  const [theCast, setCast] = useState([]);
+  const [cast, setCast] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
-    fetchMovieCast(movieId).then(({ results }) =>
-      setCast(({ prevState }) => [...prevState, ...results])
-    );
+    fetchMovieCast(movieId).then(({ cast }) => {
+      console.log(cast);
+      setCast((prevCast) => [...prevCast, ...cast]);
+    });
   }, [movieId]);
   return (
     <>
       <h2>Actors</h2>
       <ul>
-        {theCast.map(({ id, name, profile_path, character }) => {
+        {cast.map(({ cast_id, original_name, profile_path, character }) => {
           return (
-            <li key={id}>
+            <li key={cast_id}>
               <div>
                 {profile_path ? (
                   <img
                     src={`https://image.tmdb.org/t/p/w500${profile_path}`}
                     alt="name"
+                    width="100"
                   />
                 ) : (
-                  <img src={movie} alt={name} />
+                  <img src={movie} alt={original_name} width="100" />
                 )}
               </div>
-              <h3>{name}</h3>
+              <h3>{original_name}</h3>
             </li>
           );
         })}

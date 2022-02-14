@@ -25,9 +25,9 @@ export const fetchMovieByQuery = async (query) => {
 
 export const fetchMovieCast = async (id) => {
   const url = `/3/movie/${id}/credits?api_key=${API_KEY}`;
-  const theCast = await axios.get(url);
+  const { data } = await axios.get(url);
 
-  return theCast;
+  return data;
 };
 
 export const fetchReviews = async (id) => {

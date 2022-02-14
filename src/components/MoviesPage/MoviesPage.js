@@ -13,10 +13,9 @@ export const MoviesPage = () => {
   const history = useHistory();
   // console.log(new URLSearchParams(location.search));
   useEffect(() => {
-    // setRequest(new URLSearchParams(location.search).get("query"));
-    // console.log(request);
+    setRequest(new URLSearchParams(location.search).get("query"));
   }, [location.search]);
-  console.log(useRouteMatch());
+
   useEffect(() => {
     if (query) {
       fetchMovieByQuery(query).then(({ results }) => {
@@ -30,6 +29,7 @@ export const MoviesPage = () => {
 
     history.push({ ...location, search: `query=${query}` });
   };
+
   return (
     <>
       <SearchBar onSubmite={handleFormSubmite} />
